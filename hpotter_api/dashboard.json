@@ -1,0 +1,111 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "IP Addresses",
+			"width": 1,
+			"row": {
+				"2": 1,
+				"3": 1
+			},
+			"col": {
+				"2": 1,
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "var header = \"<table><thead><tr><th>Source IP</th><th>Destination IP</th></tr></thead><tbody>\";\nvar data = datasources[\"Connections\"][\"data\"][\"allConnections\"][\"edges\"];\nvar dataRows = data.map(edge => `<tr><td>${edge.node.sourceIP}</td><td>${edge.node.destIP}</td></tr>`).join('');\nvar footer = \"</tbody></table>\";\nreturn header + dataRows + footer;",
+						"height": 4
+					}
+				}
+			]
+		},
+		{
+			"title": "Credentials",
+			"width": 1,
+			"row": {
+				"2": 11,
+				"3": 1
+			},
+			"col": {
+				"2": 1,
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "var header = \"<table><thead><tr><th>Username</th><th>Password</th></tr></thead><tbody>\";\nvar data = datasources[\"Credentials\"][\"data\"][\"allCredentials\"][\"edges\"];\nvar dataRows = data.map(edge => `<tr><td>${edge.node.username}</td><td>${edge.node.password}</td></tr>`).join('');\nvar footer = \"</tbody></table>\";\nreturn header + dataRows + footer;",
+						"height": 4
+					}
+				}
+			]
+		},
+		{
+			"title": "Ports",
+			"width": 1,
+			"row": {
+				"2": 1,
+				"3": 1
+			},
+			"col": {
+				"2": 2,
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "var header = \"<table><thead><tr><th>Source Port</th><th>Destination Port</th></tr></thead><tbody>\";\nvar data = datasources[\"Connections\"][\"data\"][\"allConnections\"][\"edges\"];\nvar dataRows = data.map(edge => `<tr><td>${edge.node.sourcePort}</td><td>${edge.node.destPort}</td></tr>`).join('');\nvar footer = \"</tbody></table>\";\nreturn header + dataRows + footer;",
+						"height": 4
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "Connections",
+			"type": "JSON",
+			"settings": {
+				"url": "http://localhost:8000",
+				"use_thingproxy": false,
+				"refresh": 5,
+				"method": "POST",
+				"body": "{\"query\":\"{allConnections{edges{node{sourcePort,destPort, sourceIP,destIP}}}}\"}",
+				"headers": [
+					{
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"name": "Connections"
+			}
+		},
+		{
+			"name": "Credentials",
+			"type": "JSON",
+			"settings": {
+				"url": "http://localhost:8000",
+				"use_thingproxy": false,
+				"refresh": 5,
+				"method": "POST",
+				"body": "{\"query\":\"{allCredentials{edges{node{username,password}}}}\"}",
+				"headers": [
+					{
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				]
+			}
+		}
+	],
+	"columns": 3
+}
