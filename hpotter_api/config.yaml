@@ -1,5 +1,6 @@
 ---
 logging_format: '%(filename)s:%(lineno)d:%(levelname)s:%(message)s'
-dbUrl: 'sqlite:///db.sqlite3'
+dbUrl: 'sqlite:///../../HPotter/main.db'
+#ddmax_threads: 1
 port: 8080
 ...

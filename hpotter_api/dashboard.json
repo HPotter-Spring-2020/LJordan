@@ -75,7 +75,7 @@
 			"name": "Connections",
 			"type": "JSON",
 			"settings": {
-				"url": "http://localhost:8000",
+				"url": "http://localhost:8080",
 				"use_thingproxy": false,
 				"refresh": 5,
 				"method": "POST",
@@ -93,7 +93,7 @@
 			"name": "Credentials",
 			"type": "JSON",
 			"settings": {
-				"url": "http://localhost:8000",
+				"url": "http://localhost:8080",
 				"use_thingproxy": false,
 				"refresh": 5,
 				"method": "POST",
